@@ -1,0 +1,66 @@
+plugins {
+    id 'java-library'
+    id "io.qameta.allure" version "2.9.6"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+def allureVersion = "2.17.3",
+    selenideVersion = "6.5.2",
+    appiumVersion = "7.6.0",
+    junitVersion = "5.8.2",
+    slf4jVersion = "1.7.32",
+    restAssuredVersion = "5.1.0"
+
+
+allure {
+    report {
+        version.set(allureVersion)
+    }
+    adapter {
+        aspectjWeaver.set(true)
+        frameworks {
+            junit5 {
+                adapterVersion.set(allureVersion)
+            }
+        }
+    }
+}
+
+dependencies {
+    testImplementation(
+            //"com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",    //selenide listener
+            "io.appium:java-client:$appiumVersion",
+            "org.junit.jupiter:junit-jupiter:$junitVersion",
+            "org.slf4j:slf4j-simple:$slf4jVersion",                        //logger
+            "io.rest-assured:rest-assured:$restAssuredVersion",            //REST testing framework,
+    )
+}
+
+tasks.withType(JavaCompile) {
+    options.encoding = 'UTF-8'
+}
+
+tasks.withType(Test) {
+    systemProperties(System.getProperties())
+    useJUnitPlatform()
+
+    testLogging {
+        lifecycle {
+            events "started", "skipped", "failed", "standard_error", "standard_out"
+            exceptionFormat "short"
+        }
+    }
+}
+
+task android(type: Test) {
+    useJUnitPlatform{
+        includeTags( 'android')
+    }
+}
