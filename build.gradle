@@ -12,10 +12,12 @@ repositories {
 
 def allureVersion = "2.17.3",
     selenideVersion = "6.5.2",
-    appiumVersion = "7.6.0",
+    appiumVersion = "8.0.0",
     junitVersion = "5.8.2",
     slf4jVersion = "1.7.32",
-    restAssuredVersion = "5.1.0"
+    restAssuredVersion = "5.1.0",
+    ownerVersion = "1.0.12",
+    commonsIoVersion= "2.11.0"
 
 
 allure {
@@ -34,12 +36,14 @@ allure {
 
 dependencies {
     testImplementation(
-            //"com.codeborne:selenide:$selenideVersion",
-            "io.qameta.allure:allure-selenide:$allureVersion",    //selenide listener
+            "com.codeborne:selenide:$selenideVersion",
+            "io.qameta.allure:allure-selenide:$allureVersion",          //selenide listener
             "io.appium:java-client:$appiumVersion",
             "org.junit.jupiter:junit-jupiter:$junitVersion",
-            "org.slf4j:slf4j-simple:$slf4jVersion",                        //logger
-            "io.rest-assured:rest-assured:$restAssuredVersion",            //REST testing framework,
+            "org.slf4j:slf4j-simple:$slf4jVersion",                     //logger
+            "io.rest-assured:rest-assured:$restAssuredVersion",         //REST testing framework,
+            "org.aeonbits.owner:owner:$ownerVersion",                   //properties based configuration
+            "commons-io:commons-io:$commonsIoVersion"                   //working with files
     )
 }
 
@@ -48,9 +52,14 @@ tasks.withType(JavaCompile) {
 }
 
 tasks.withType(Test) {
-    systemProperties(System.getProperties())
+    systemProperties(System.getProperties()) //get properties from console
     useJUnitPlatform()
 
+    testLogging {
+        showStandardStreams = true  //turn on gradle console output
+    }
+
+    //add detailed info about passed & failed tests
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
