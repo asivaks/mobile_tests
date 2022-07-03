@@ -2,7 +2,6 @@ package config;
 
 
 import org.aeonbits.owner.Config;
-import org.checkerframework.checker.units.qual.K;
 
 @Config.LoadPolicy(Config.LoadType.MERGE) //http://owner.aeonbits.org/docs/loading-strategies/
 @Config.Sources({
@@ -11,17 +10,18 @@ import org.checkerframework.checker.units.qual.K;
 
 public interface BrowserstackConfig extends Config {
 
-    //@Key("browserstackLogin")
+    // TODO: 04.07.2022  why do I have to add it just to highlight this property in .property file?
+    @Key("browserstackLogin")
     String browserstackLogin();
 
-    //@Key("browserstackPassword")
+    @Key("browserstackPassword")
     String browserstackPassword();
 
     String app();
 
     String device();
 
-    //@Key("osVersion")
+    @Key("osVersion")
     String osVersion();
 
     String project();

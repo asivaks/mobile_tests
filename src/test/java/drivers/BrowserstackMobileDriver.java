@@ -14,7 +14,8 @@ import java.net.URL;
 
 public class BrowserstackMobileDriver implements WebDriverProvider {
 
-    static BrowserstackConfig browserstackConfig = ConfigFactory.create(BrowserstackConfig.class);
+    //BrowserstackConfig config = ConfigFactory.create(BrowserstackConfig.class, System.getProperties());
+    //MAYBE SHOULD BE MOVED HERE?
 
     @Override
     public WebDriver createDriver(@Nonnull Capabilities capabilities) {
