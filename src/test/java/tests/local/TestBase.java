@@ -2,6 +2,7 @@ package tests.local;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
+import drivers.BrowserstackMobileDriver;
 import drivers.GalaxyA51MobileDriver;
 import drivers.LocalEmulatorMobileDriver;
 import helpers.Attach;
@@ -15,8 +16,11 @@ import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
 import static io.qameta.allure.Allure.step;
 
 public class TestBase {
+
     @BeforeAll
-    public static void setup() {
+    public static void setup(){
+
+
         //Configuration.browser = LocalEmulatorMobileDriver.class.getName();
         Configuration.browser = GalaxyA51MobileDriver.class.getName();
         Configuration.browserSize = null;   //crutch but mandatory should be

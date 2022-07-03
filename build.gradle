@@ -73,3 +73,15 @@ task android(type: Test) {
         includeTags( 'android')
     }
 }
+
+task searchTest(type: Test) {
+    useJUnitPlatform {
+        includeTags 'searchTest'
+    }
+}
+
+task searchTitleTest(type: Test) {
+    useJUnitPlatform {
+        includeTags 'searchTitleTest'
+    }
+}
