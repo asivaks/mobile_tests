@@ -24,7 +24,7 @@ public class GalaxyA51MobileDriver implements WebDriverProvider {
         options.merge(capabilities);
         options.setAutomationName(AutomationName.ANDROID_UIAUTOMATOR2);
         options.setPlatformName("Android");
-        options.setDeviceName("Pixel 4 API 30");
+        options.setDeviceName("RZ8R228QXTB");
         options.setPlatformVersion("11.0");
         options.setApp(app.getAbsolutePath());
 
@@ -35,6 +35,8 @@ public class GalaxyA51MobileDriver implements WebDriverProvider {
 
         options.setAppPackage("org.wikipedia.alpha");
         options.setAppActivity("org.wikipedia.main.MainActivity");
+
+        System.out.println("options= " + options);
 
         return new AndroidDriver(getAppiumServerUrl(), options);
 
