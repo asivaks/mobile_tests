@@ -3,13 +3,14 @@ package tests;
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
 import drivers.BrowserstackMobileDriver;
-import drivers.GalaxyA51MobileDriver;
-import drivers.LocalEmulatorMobileDriver;
+import drivers.LocalMobileDriver;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+
+import java.util.Objects;
 
 import static com.codeborne.selenide.Selenide.open;
 import static com.codeborne.selenide.logevents.SelenideLogger.addListener;
@@ -22,23 +23,29 @@ public class TestBase {
 
     @BeforeAll
     public static void setup() throws Exception {
-        //Configuration.browser = GalaxyA51MobileDriver.class.getName();
 
         System.out.println("host= " + host);
-
-        switch (host) {
-            case ("emulator"):
-                Configuration.browser = LocalEmulatorMobileDriver.class.getName();
-                break;
-            case ("GalaxyA51"):
-                Configuration.browser = GalaxyA51MobileDriver.class.getName();
-                break;
-            case ("browserstack"):
-                Configuration.browser = BrowserstackMobileDriver.class.getName();
-                break;
-            default:
-                throw new Exception("unknown host=" + host);
-
+        if (Objects.isNull(host)) { //host has a default value, looks like null check is redundant
+            throw new Exception("host is null");
+        } else {
+            switch (host) {
+//                case ("emulator"):
+//                    Configuration.browser = LocalEmulatorMobileDriver.class.getName();
+//                    break;
+//                case ("GalaxyA51"):
+//                    Configuration.browser = GalaxyA51MobileDriver.class.getName();
+//                    break;
+//combining both cases into one mobile driver
+                case ("galaxyA51"):
+                case ("emulator"):
+                    Configuration.browser = LocalMobileDriver.class.getName();
+                    break;
+                case ("browserstack"):
+                    Configuration.browser = BrowserstackMobileDriver.class.getName();
+                    break;
+                default:
+                    throw new Exception("unknown host=" + host);
+            }
         }
 
         Configuration.browserSize = null;   //crutch but mandatory should be

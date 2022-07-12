@@ -1,6 +1,6 @@
 plugins {
-    id 'java-library'
-    id "io.qameta.allure" version "2.9.6"
+    id 'java-library'                       //more lightweight than java
+    id "io.qameta.allure" version "2.9.6"   //allure
 }
 
 group 'org.example'

@@ -2,9 +2,7 @@ package samples.local;
 
 import com.codeborne.selenide.Configuration;
 import com.codeborne.selenide.Selenide;
-import drivers.BrowserstackMobileDriver;
-import drivers.GalaxyA51MobileDriver;
-import drivers.LocalEmulatorMobileDriver;
+import drivers.GalaxyA51MobileDriver_obsolete;
 import helpers.Attach;
 import io.qameta.allure.selenide.AllureSelenide;
 import org.junit.jupiter.api.AfterEach;
@@ -22,7 +20,7 @@ public class TestBase {
 
 
         //Configuration.browser = LocalEmulatorMobileDriver.class.getName();
-        Configuration.browser = GalaxyA51MobileDriver.class.getName();
+        Configuration.browser = GalaxyA51MobileDriver_obsolete.class.getName();
         Configuration.browserSize = null;   //crutch but mandatory should be
 
     }

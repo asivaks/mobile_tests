@@ -1,8 +1,9 @@
+//obsolete, replaced by LocalMobileDriver
+
 package drivers;
 
 import com.codeborne.selenide.WebDriverProvider;
-import config.BrowserstackConfig;
-import config.GalaxyA51Config;
+import config.LocalEmulatorConfig_obsolete;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
 import io.appium.java_client.remote.AutomationName;
@@ -18,11 +19,11 @@ import java.net.URL;
 
 import static org.apache.commons.io.FileUtils.copyInputStreamToFile;
 
-public class GalaxyA51MobileDriver implements WebDriverProvider {
+public class LocalEmulatorMobileDriver_obsolete implements WebDriverProvider {
 
     @Override
     public WebDriver createDriver(Capabilities capabilities) {
-        GalaxyA51Config config = ConfigFactory.create(GalaxyA51Config.class, System.getProperties());
+        LocalEmulatorConfig_obsolete config = ConfigFactory.create(LocalEmulatorConfig_obsolete.class, System.getProperties());
         File app = getApp();
         UiAutomator2Options options = new UiAutomator2Options();
         options.merge(capabilities);
@@ -32,7 +33,7 @@ public class GalaxyA51MobileDriver implements WebDriverProvider {
         options.setPlatformName(config.platformName());
 
         //"this shit doesn't affect anything, it will take just 1st device with fitting platform version
-        //options.setDeviceName("RZ8R228QXTB");
+        //options.setDeviceName("Pixel 4 API 30");
         options.setDeviceName(config.deviceName());
 
         //options.setPlatformVersion("11.0");

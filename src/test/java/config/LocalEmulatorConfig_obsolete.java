@@ -1,5 +1,6 @@
-package config;
+//obsolete, replaced by LocalMobileConfig
 
+package config;
 
 import org.aeonbits.owner.Config;
 
@@ -7,9 +8,8 @@ import org.aeonbits.owner.Config;
 @Config.Sources({
         "classpath:config/emulator.properties"
 })
-// TODO: 04.07.2022 We are using the same code except this from one config to another. Can we somehow pass just a source?
 
-public interface LocalEmulatorConfig extends Config {
+public interface LocalEmulatorConfig_obsolete extends Config {
 
     @Key("platformName")
     String platformName();
